@@ -3,9 +3,9 @@
 **Data Analysis Team:** Adam Kozlowski, Lisa Formentini, Merlyn Johanna Hurtado
 
 # 1. Description
-This project is developed during the Course Open Data at the Master AIRE in the Center for Research and Interdisciplinarity -CRI- 
+This project is developed during the Course Open Data at the Master AIRE in the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en)
 
-The main goal of this analysis is to explore Open Data, built and deploy innteractive dashboards
+The main goal of this project is to do analysis,  built and deploy innteractive dashboards using open data 
 
 # 2. Dataset 
  We use the data set from OurWorldData 
