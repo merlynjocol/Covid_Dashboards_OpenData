@@ -8,10 +8,13 @@ This project is developed during the Course Open Data at the Master AIRE in the 
 The main goal of this analysis is to explore Open Data, built and deploy innteractive dashboards
 
 # 2. Dataset 
- We use OurWorldData 
+ We use the data set from OurWorldData 
+ 
  https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true
+ 
 
 --> Here are the description of the variables: 
+
 - iso_code= ISO 3166-1 alpha-3 – three-letter country codes
 - continent= Continent of the geographical location
 - location=	Geographical location
