@@ -54,7 +54,6 @@ variable = st.multiselect("Select the Variable",("Cases","Deaths"))
 #select the country
 countries = st.multiselect("Select a Country or Countries",covid_w['location'].unique())
 # Only show dataframe with these columns
-new_df = covid_w[covid_w['location'].isin(countries)]
 
 
 
