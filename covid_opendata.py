@@ -1,17 +1,26 @@
-import streamlit as st
-import pandas as pd # library for data analysis
-from streamlit_folium import folium_static
-import folium
-import json
-import requests
+import pandas as pd
 import numpy as np
 
-from geopy.geocoders import Nominatim 
-# convert an address into latitude and longitude values
+#libraries for matplotlib charts
+from datetime import datetime
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+
+#libraries for Plotly graphs
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.figure_factory as ff
+from plotly.subplots import make_subplots
+
+import json
+from geopy.geocoders import Nominatim  # convert address into latitude and longitude 
 import requests # library to handle requests
+
+#building the app
 import streamlit as st #creating an app
 from streamlit_folium import folium_static 
-#using folium on 
+import folium #using folium on 
 
 
 #Importing the data
@@ -53,7 +62,40 @@ variable = st.multiselect("Select the Variable",("Cases","Deaths"))
  
 #select the country
 countries = st.multiselect("Select a Country or Countries",covid_w['location'].unique())
-# Only show dataframe with these columns
+
+# Only show the dataframe with these columns
+new_df = covid_w[covid_w['location'].isin(countries)]
+
+# adding a chart 
+fig = px.line( new_df, x = 'date', y = 'total_cases', color = "location", template="simple_white")
+
+fig.update_layout(plot_bgcolor="white", 
+                        xaxis = dict(
+                                    title = 'Date', 
+                                    showline=True,
+                                    showgrid=False,
+                                    linecolor='rgb(204, 204, 204)',
+                                    linewidth=0.5,
+                                    ticks='outside',
+                                    tickfont = dict(
+                                        family = 'Arial', 
+                                        size = 14, 
+                                        color = 'rgb(82, 82, 82)'),
+                                    ), 
+                        yaxis = dict(title = 'Number of People', 
+                                    showgrid=True,
+                                    zeroline=False,
+                                    showline=False,
+                                    linecolor='rgb(204, 204, 204)',
+                                    linewidth=0.5,
+                                    showticklabels=True), 
+                        legend_title=dict(text='<b>Countries</b>',
+                                     font=dict(
+                                     size = 16)),
+                 )
+#margin=dict(t=10,l=10,b=10,r=10)
+
+st.plotly_chart(fig, use_container_width=True)
 
 
 
