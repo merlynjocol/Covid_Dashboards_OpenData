@@ -48,12 +48,12 @@ st.text('this is app')
 st.write (''' This project presents interactive dashboards to explore covid-19 data at global level. You can choosee the countries and continents, compare between the number of cases, deaths and vaccination in a time period ''')
 
 
- #Select the variable 
- variable = st.multiselect("Select the Variable",("Cases","Deaths"))
+#Select the variable 
+variable = st.multiselect("Select the Variable",("Cases","Deaths"))
  
- #select the country
- countries = st.multiselect("Select a Country or Countries",covid_w['location'].unique())
- # Only show dataframe with these columns
- new_df = covid_w[covid_w['location'].isin(countries)]
+#select the country
+countries = st.multiselect("Select a Country or Countries",covid_w['location'].unique())
+# Only show dataframe with these columns
+new_df = covid_w[covid_w['location'].isin(countries)]
 
 
