@@ -20,3 +20,9 @@ covid_our = pd.read_csv('https://github.com/owid/covid-19-data/blob/master/publi
 covid_our
 
 st.bar_chart(covid_our)
+# *** TITLE ***
+st.title('cov_app')
+st.text('this is app')
+"""
+#### Lalala
+"""
