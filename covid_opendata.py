@@ -9,9 +9,13 @@ from matplotlib import rcParams
 
 #libraries for Plotly graphs
 import plotly.express as px
-import plotly.graph_objects as go
 import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
+
+#create templates
+import plotly.graph_objects as go
+import plotly.io as pio
+
 
 import json
 from geopy.geocoders import Nominatim  # convert address into latitude and longitude 
@@ -21,6 +25,12 @@ import requests # library to handle requests
 import streamlit as st #creating an app
 from streamlit_folium import folium_static 
 import folium #using folium on 
+
+import altair as alt
+
+#Importing the data
+
+#Importing the data
 
 
 #Importing the data
@@ -56,22 +66,25 @@ st.title("COVID-19 Interactive Dashboards")
 #st.text('this is app')
 st.write (''' This project presents interactive dashboards to explore covid-19 data at global level. You can choosee the countries and continents, compare between the number of cases, deaths and vaccination in a time period ''')
 
+#Building the selectbox 
+
+st.header("Confirmed Cases and Deaths by Country")
+st.write ('''Select the variable to analyse and the countrye''')
 
 #Select the variable 
-variable = st.multiselect("Select the Variable",("Cases","Deaths"))
- 
+variable = st.selectbox("Select the Variable",("Cases","Deaths"))
 #select the country
-countries = st.multiselect("Select a Country or Countries",covid_w['location'].unique())
+countries = st.multiselect("Select a Country or Multiple Countries",covid_w['location'].unique())
 
-# Only show the dataframe with these columns
+# Built the dataframe with the countries selected
 new_df = covid_w[covid_w['location'].isin(countries)]
 
-# adding a chart 
-fig = px.line( new_df, x = 'date', y = 'total_cases', color = "location", template="simple_white")
+# Building the charts
 
-fig.update_layout(plot_bgcolor="white", 
-                        xaxis = dict(
-                                    title = 'Date', 
+#building my own template 
+template_covid = dict(layout=go.Layout(title_font=dict(family="Helvetica", size=24), 
+                                 plot_bgcolor="white", 
+                                  xaxis = dict(
                                     showline=True,
                                     showgrid=False,
                                     linecolor='rgb(204, 204, 204)',
@@ -82,20 +95,102 @@ fig.update_layout(plot_bgcolor="white",
                                         size = 14, 
                                         color = 'rgb(82, 82, 82)'),
                                     ), 
-                        yaxis = dict(title = 'Number of People', 
+                                  yaxis = dict( 
                                     showgrid=True,
                                     zeroline=False,
                                     showline=False,
                                     linecolor='rgb(204, 204, 204)',
                                     linewidth=0.5,
-                                    showticklabels=True), 
-                        legend_title=dict(text='<b>Countries</b>',
+                                    showticklabels=True),
+                                  legend_title=dict(text='<b>Countries</b>',
                                      font=dict(
                                      size = 16)),
-                 )
-#margin=dict(t=10,l=10,b=10,r=10)
+                 ))
 
-st.plotly_chart(fig, use_container_width=True)
 
+
+# Build my own second template 
+monochrome_colors = ['#251616', '#760000', '#C63F3F', '#E28073', '#F1D3CF']
+primary_colors = ['#C63F3F', '#F4B436', '#83BFCC', '#455574', '#E2DDDB']
+
+theme_covid2 = go.layout.Template(
+            layout=go.Layout(
+            title = {'font':{'size':18, 'family':"Helvetica", 
+                             'color':monochrome_colors[0]}, 
+                             'pad':{'t':100, 'r':0, 'b':0, 'l':0}},
+            plot_bgcolor="#F4B436",
+            font = {'size':18, 'family':'Helvetica', 'color':'#717171'},
+            xaxis = {'ticks': "outside",
+                'tickfont': {'size': 14, 'family':"Helvetica"},
+                'showticksuffix': 'all',
+                'showtickprefix': 'last',
+                'showline': False,
+                'showgrid' :False,
+                'title':{'font':{'size':18, 'family':'Helvetica'}, 'standoff':20},
+                'automargin': True,
+                },
+            yaxis = {'ticks': "outside",
+                'tickfont': {'size': 14, 'family':"Helvetica"},
+                'showticksuffix': 'all',
+                'showtickprefix': 'last',
+                'title':{'font':{'size':18, 'family':'Helvetica'}, 'standoff':20},
+                'showline': True,
+                'automargin': True,
+                },
+            legend = {'bgcolor':'rgba(0,0,0,0)', 
+                'title':{'font':{'size':18, 'family':"Helvetica", 'color':monochrome_colors[0]}}, 
+                'font':{'size':14, 'family':"Helvetica"}, 
+                'yanchor':'bottom'
+                },
+                                                 
+            colorscale = {'diverging':monochrome_colors,
+                     
+                     },
+            coloraxis = {'autocolorscale':True, 
+                'cauto':True, 
+                'colorbar':{'tickfont':{'size':14,'family':'Helvetica'}, 
+                            'title':{'font':{'size':18, 'family':'Helvetica'}}},
+                },
+            scene = {'xaxis': {'backgroundcolor': 'white',
+                        'gridcolor': 'rgb(232,232,232)',
+                        'gridwidth': 2,
+                        'linecolor': 'rgb(36,36,36)',
+                        'showbackground': True,
+                        'showgrid': False,
+                        'showline': True,
+                        'ticks': 'outside',
+                        'zeroline': False,
+                        'zerolinecolor': 'rgb(36,36,36)',
+                            }
+                } 
+        )
+)
+                 
+
+
+#Built the chart with every variable selected 
+
+#Cases chart
+ca = px.line( new_df, x = 'date', y = 'new_cases', color = "location")
+
+ca.update_layout(title="Daily Cases of Covid19",
+                 xaxis = dict(title = 'Date'), 
+                 yaxis = dict(title = 'Number of People'),
+                 legend_title=dict(text='<b>Countries</b>'),
+                 template=theme_covid2)
+                 
+#Death Chart 
+de = px.line( new_df, x = 'date', y = 'new_deaths', color = "location")
+
+de.update_layout(title="Daily Deaths by Covid19", 
+                 xaxis = dict(title = 'Date'), 
+                 yaxis = dict(title = 'Number of People'),
+                 legend_title=dict(text='<b>Countries</b>'),
+                 template=theme_covid2 )
+
+if variable =='Cases':
+    st.plotly_chart(ca, use_container_width=True)   
+elif variable =='Deaths':
+    st.plotly_chart(de, use_container_width=True) 
 
 
