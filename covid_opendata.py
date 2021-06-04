@@ -3,7 +3,6 @@ import numpy as np
 
 #libraries for matplotlib charts
 import datetime
-from dateutil.relativedelta import relativedelta
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
