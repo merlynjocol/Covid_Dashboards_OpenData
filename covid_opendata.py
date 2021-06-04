@@ -59,8 +59,8 @@ def load_data():
     #dropping the rows with values that are not countries 
     not_countries = ['OWID_EUN', 'OWID_INT']
     covid_w = covid_our [~covid_our['iso_code'].isin(not_countries)]
-    contry_shapes = pd.read_json('https://github.com/python-visualization/folium/blob/master/examples/data/world-countries.json')
-    #country_shapes = json.load(open('world-countries.json'))
+    #contry_shapes = pd.json.load('https://github.com/python-visualization/folium/blob/master/examples/data/world-countries.json')
+    country_shapes = json.load(open('world-countries.json'))
     return covid_our,covid_w, country_shapes
 covid_our,covid_w, country_shapes = load_data()
 
