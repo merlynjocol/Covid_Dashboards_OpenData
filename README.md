@@ -33,37 +33,39 @@ The main goal of this project is to do analysis,  built and deploy innteractive 
 
 Here are the libraries that shall be used. 
 
-import pandas as pd
-import numpy as np
+- pandas as pd
+- numpy as np
 
 #libraries for matplotlib charts
-from datetime import datetime
-import matplotlib
-import matplotlib.pyplot as plt
-from matplotlib import rcParams
+- datetime
+- matplotlib
+- matplotlib.pyplot as plt
 
 #libraries for Plotly graphs
-import plotly.express as px
-import plotly.figure_factory as ff
-from plotly.subplots import make_subplots
+- plotly.express as px
+- plotly.figure_factory as ff
+- plotly.subplots 
+- make_subplots
 
 #create templates
-import plotly.graph_objects as go
-import plotly.io as pio
+- plotly.graph_objects as go
+- plotly.io as pio
 
-import json
-from geopy.geocoders import Nominatim  # convert address into latitude and longitude 
-import requests # library to handle requests
+- json
+- from geopy.geocoders import Nominatim 
+- requests
 
 #building the app
-import streamlit as st #creating an app
-from streamlit_folium import folium_static 
-import folium #using folium on 
+- streamlit as st
+- streamlit_folium 
+- folium_static 
+- folium
 
-import altair as alt
+- altair as alt
 
 In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
-In order to install other libraries, the team used pip install x on an anaconda terminal. NB: you have to pip install folium and pip install streamlit-folium
+In order to install other libraries, the team used pip install {} on an anaconda terminal. 
+NB: you have to pip install folium and pip install streamlit-folium
 
 Please download the world-countries.json file.
 
