@@ -26,7 +26,7 @@ import streamlit as st #creating an app
 from streamlit_folium import folium_static 
 import folium #using folium on 
 
-import altair as alt
+
 
 #Importing the data
 
@@ -59,22 +59,28 @@ def load_data():
     #dropping the rows with values that are not countries 
     not_countries = ['OWID_EUN', 'OWID_INT']
     covid_w = covid_our [~covid_our['iso_code'].isin(not_countries)]
-    return covid_our,covid_w
-covid_our,covid_w= load_data()
+    country_shapes = json.load(open('world-countries.json'))
+    return covid_our,covid_w, country_shapes
+covid_our,covid_w, country_shapes = load_data()
+
+
+
+#FIRST CONTAINER 
 
 st.title("COVID-19 Interactive Dashboards")
 #st.text('this is app')
 st.write (''' This project presents interactive dashboards to explore covid-19 data at global level. You can choosee the countries and continents, compare between the number of cases, deaths and vaccination in a time period ''')
 
-#Building the selectbox 
 
-st.header("Confirmed Cases and Deaths by Country")
+#SECOND CONTAINER 
+#Titles
+st.header("1. Confirmed Cases and Deaths by Country")
 st.write ('''Select the variable to analyse and the countrye''')
 
 #Select the variable 
-variable = st.selectbox("Select the Variable",("Cases","Deaths","Cases per million","Deaths per million", "Cases per million smoothed on a week", "Deaths per million smoothed on a week"))
+variable = st.selectbox("Select the Variable",("Cases","Deaths"))
 #select the country
-countries = st.multiselect("Select a Country or Multiple Countries",covid_w['location'].unique())
+countries = st.multiselect("Select a Country or Multiple countries",covid_w['location'].unique())
 
 # Built the dataframe with the countries selected
 new_df = covid_w[covid_w['location'].isin(countries)]
@@ -168,7 +174,6 @@ theme_covid2 = go.layout.Template(
                  
 
 
-#Built the chart with every variable selected 
 
 #Cases chart
 ca = px.line( new_df, x = 'date', y = 'new_cases', color = "location")
@@ -193,6 +198,8 @@ if variable =='Cases':
 elif variable =='Deaths':
     st.plotly_chart(de, use_container_width=True) 
 
+
+
 #Cases chart per million
 ca_pm = px.line( new_df, x = 'date', y = 'new_cases_per_million', color = "location")
 
@@ -216,27 +223,3 @@ if variable =='Cases per million':
     st.plotly_chart(ca_pm, use_container_width=True)   
 elif variable =='Deaths per million':
     st.plotly_chart(de_pm, use_container_width=True) 
-    
-  #Cases chart per million smoothed on a week
-ca_pms = px.line( new_df, x = 'date', y = 'new_cases_smoothed_per_million', color = "location")
-
-ca_pms.update_layout(title="Daily Cases of Covid19 per million habitants",
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People (in million)'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                 template=theme_covid2)
-
-#Death Chart per million smoothed on a week
-de_pms = px.line( new_df, x = 'date', y = 'new_deaths_smoothed_per_million', color = "location")
-
-de_pms.update_layout(title="Daily Deaths by Covid19 per million", 
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People (in million)'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                 template=theme_covid2 )
-
-
-if variable =='Cases per million smoothed on a week':
-    st.plotly_chart(ca_pms, use_container_width=True)   
-elif variable =='Deaths per million smoothed on a week':
-    st.plotly_chart(de_pms, use_container_width=True) 
