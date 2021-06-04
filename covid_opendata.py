@@ -211,7 +211,7 @@ de_pm.update_layout(title="Daily Deaths by Covid19 per million",
                  legend_title=dict(text='<b>Countries</b>'),
                  template=theme_covid2 )
 
-#Cases chart per million
+#Cases chart per million smoothed on week
 ca_pm = px.line( new_df, x = 'date', y = 'new_cases_smoothed_per_million', color = "location")
 
 ca_pm.update_layout(title="Daily Cases of Covid19 per million habitants",
@@ -220,7 +220,7 @@ ca_pm.update_layout(title="Daily Cases of Covid19 per million habitants",
                  legend_title=dict(text='<b>Countries</b>'),
                  template=theme_covid2)
 
-#Death Chart per million smoothed 
+#Death Chart per million smoothed on week
 de_pm = px.line( new_df, x = 'date', y = 'new_deaths_smoothed_per_million', color = "location")
 
 de_pm.update_layout(title="Daily Deaths by Covid19 per million", 
