@@ -5,4 +5,5 @@ pip install plotly
 pip install geopy
 pip install streamlit
 pip install folium OR conda install -c conda-forge folium
+pip install streamlit-folium
 pip install altair
