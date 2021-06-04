@@ -78,7 +78,7 @@ st.header("1. Confirmed Cases and Deaths by Country")
 st.write ('''Select the variable to analyse and the countrye''')
 
 #Select the variable 
-variable = st.selectbox("Select the Variable",("Cases","Deaths","Cases per million", "Deaths per million", "Deaths per million (smoothed on a week)", "Cases per million (smoothed on a week)")
+variable = st.selectbox("Select the Variable",("Cases","Deaths","Cases per million", "Deaths per million", "Deaths per million (smoothed on a week)", "Cases per million (smoothed on a week)"))
 #select the country
 countries = st.multiselect("Select a Country or Multiple countries",covid_w['location'].unique())
 
