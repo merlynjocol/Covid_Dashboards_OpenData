@@ -67,5 +67,5 @@ In order to install streamlit and show the streamlit dashboard, please refer to 
 In order to install other libraries, the team used pip install {} on an anaconda terminal. 
 NB: you have to pip install folium and pip install streamlit-folium
 
-Please download the world-countries.json file and the OurWorldData file linked.
+Please download the world-countries.json file.
 
