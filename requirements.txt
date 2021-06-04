@@ -1,0 +1,8 @@
+pip install pandas
+pip install numpy
+pip install matplotlib
+pip install plotly
+pip install geopy
+pip install streamlit
+pip install folium OR conda install -c conda-forge folium
+pip install altair
