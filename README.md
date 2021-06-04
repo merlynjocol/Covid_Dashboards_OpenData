@@ -61,3 +61,6 @@ from streamlit_folium import folium_static
 import folium #using folium on 
 
 import altair as alt
+
+In order to install streamlit, please refer to the official website: https://streamlit.io/#install
+In order to install other librairies, the team used pip install x on an anaconda terminal. 
