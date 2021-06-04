@@ -78,7 +78,7 @@ st.header("1. Confirmed Cases and Deaths by Country")
 st.write ('''Select the variable to analyse and the countrye''')
 
 #Select the variable 
-variable = st.selectbox("Select the Variable",("Cases","Deaths"))
+variable = st.selectbox("Select the Variable",("Cases","Deaths","Cases per million", "Deaths per million", "Deaths per million (smoothed on a week)", "Cases per million (smoothed on a week)")
 #select the country
 countries = st.multiselect("Select a Country or Multiple countries",covid_w['location'].unique())
 
@@ -193,13 +193,6 @@ de.update_layout(title="Daily Deaths by Covid19",
                  legend_title=dict(text='<b>Countries</b>'),
                  template=theme_covid2 )
 
-if variable =='Cases':
-    st.plotly_chart(ca, use_container_width=True)   
-elif variable =='Deaths':
-    st.plotly_chart(de, use_container_width=True) 
-
-
-
 #Cases chart per million
 ca_pm = px.line( new_df, x = 'date', y = 'new_cases_per_million', color = "location")
 
@@ -218,8 +211,34 @@ de_pm.update_layout(title="Daily Deaths by Covid19 per million",
                  legend_title=dict(text='<b>Countries</b>'),
                  template=theme_covid2 )
 
+#Cases chart per million
+ca_pm = px.line( new_df, x = 'date', y = 'new_cases_smoothed_per_million', color = "location")
 
-if variable =='Cases per million':
+ca_pm.update_layout(title="Daily Cases of Covid19 per million habitants",
+                 xaxis = dict(title = 'Date'), 
+                 yaxis = dict(title = 'Number of People (in million)'),
+                 legend_title=dict(text='<b>Countries</b>'),
+                 template=theme_covid2)
+
+#Death Chart per million smoothed 
+de_pm = px.line( new_df, x = 'date', y = 'new_deaths_smoothed_per_million', color = "location")
+
+de_pm.update_layout(title="Daily Deaths by Covid19 per million", 
+                 xaxis = dict(title = 'Date'), 
+                 yaxis = dict(title = 'Number of People (in million)'),
+                 legend_title=dict(text='<b>Countries</b>'),
+                 template=theme_covid2 )
+
+
+if variable =='Cases':
+    st.plotly_chart(ca, use_container_width=True)   
+elif variable =='Deaths':
+    st.plotly_chart(de, use_container_width=True) 
+elif variable =='Cases per million':
     st.plotly_chart(ca_pm, use_container_width=True)   
 elif variable =='Deaths per million':
     st.plotly_chart(de_pm, use_container_width=True) 
+elif variable =='Cases per million smoothed on a week':
+    st.plotly_chart(ca_pms, use_container_width=True)   
+elif variable =='Deaths per million smoothed on a week':
+    st.plotly_chart(de_pms, use_container_width=True) 
