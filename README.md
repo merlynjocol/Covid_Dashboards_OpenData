@@ -29,9 +29,9 @@ The main goal of this project is to do analysis,  built and deploy innteractive 
 - new_deaths_smoothed= New deaths attributed to COVID-19 (7-day smoothed)
 - people_fully_vaccinated= Total number of people who received all doses prescribed by the vaccination protocol
 
-# 3. Librairies  
+# 3. Libraries  
 
-Here are the librairies that shall be used. 
+Here are the libraries that shall be used. 
 
 import pandas as pd
 import numpy as np
@@ -63,4 +63,4 @@ import folium #using folium on
 import altair as alt
 
 In order to install streamlit, please refer to the official website: https://streamlit.io/#install
-In order to install other librairies, the team used pip install x on an anaconda terminal. 
+In order to install other libraries, the team used pip install x on an anaconda terminal. 
