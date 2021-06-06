@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 #libraries for matplotlib charts
-from datetime import datetime
+import datetime
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
@@ -38,9 +38,7 @@ import folium #using folium on
 st.cache(persist=True)
 def load_data():
     skipcols = ['total_cases_per_million',
-       'new_cases_per_million', 'new_cases_smoothed_per_million',
-       'total_deaths_per_million', 'new_deaths_per_million',
-       'new_deaths_smoothed_per_million', 'reproduction_rate', 'icu_patients',
+       'total_deaths_per_million', 'reproduction_rate', 'icu_patients',
        'icu_patients_per_million', 'hosp_patients',
        'hosp_patients_per_million', 'weekly_icu_admissions',
        'weekly_icu_admissions_per_million', 'weekly_hosp_admissions',
@@ -59,7 +57,6 @@ def load_data():
     #dropping the rows with values that are not countries 
     not_countries = ['OWID_EUN', 'OWID_INT']
     covid_w = covid_our [~covid_our['iso_code'].isin(not_countries)]
-    #contry_shapes = pd.json.load('https://github.com/python-visualization/folium/blob/master/examples/data/world-countries.json')
     country_shapes = json.load(open('world-countries.json'))
     return covid_our,covid_w, country_shapes
 covid_our,covid_w, country_shapes = load_data()
@@ -76,20 +73,21 @@ Most people infected with the COVID-19 virus will experience mild to moderate re
 The best way to prevent and slow down transmission is to be well informed about the COVID-19 virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face. 
 The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow). (https://www.who.int/health-topics/coronavirus#tab=tab_1)''')
 
-
 #SECOND CONTAINER 
 #Titles
 st.header("1. Confirmed Cases and Deaths by Country")
-st.write ('''Select the variable to analyse and the countrye''')
+st.write ('''Select the variable to analyse and the country''')
 
 #Select the variable 
 variable = st.selectbox("Select the Variable",("Cases","Deaths","Cases per million", "Deaths per million", "Deaths per million (smoothed on a week)", "Cases per million (smoothed on a week)"))
 #select the country
 countries = st.multiselect("Select a Country or Multiple countries",covid_w['location'].unique())
+#select the date
+st.date_input('Select start date', datetime.date(2020, 1, 1))
+st.date_input('Select end date')
 
 # Built the dataframe with the countries selected
 new_df = covid_w[covid_w['location'].isin(countries)]
-
 # Building the charts
 
 #building my own template 
@@ -181,7 +179,7 @@ theme_covid2 = go.layout.Template(
 
 
 #Cases chart
-ca = px.line( new_df, x = 'date', y = 'new_cases', color = "location")
+ca = px.line( new_df, x = 'date', y = 'new_cases', color = "location" )
 
 ca.update_layout(title="Daily Cases of Covid19",
                  xaxis = dict(title = 'Date'), 
