@@ -99,9 +99,8 @@ ca.update_layout(title="Daily Cases of Covid19",
                  xaxis = dict(title = 'Date'), 
                  yaxis = dict(title = 'Number of People'),
                  legend_title=dict(text='<b>Countries</b>'), 
-                 width = 800, height= 500) 
-                 #plot_bgcolor= "white")
-ca.update_xaxes(rangeslider_visible=True)
+                 width = 800, height= 400, 
+                 plot_bgcolor= "white")
                  
 #Death Chart 
 de = px.line( new_df, x = 'date', y = 'new_deaths', color = "location")
@@ -165,7 +164,6 @@ with col1:
         st.plotly_chart(de_pms, use_container_width=True)    
 
 with col2:   
-    st.title('''  ''')
     st.date_input('Select start date', datetime.date(2020, 1, 1))
     st.date_input('Select end date')
     normalization = st.checkbox("Relative to population")
