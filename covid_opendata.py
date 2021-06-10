@@ -41,8 +41,9 @@ st.set_page_config(layout="wide")
 # Header
 st.title("COVID-19 Interactive Dashboards")
 #st.text('this is app')
-st.write (''' 
-📈 This app present interactive dashboards to explore COVID-19 data at global level. You can choosee the region and countries, select the analysis, compare between the variables and countries, and select the time period.''')
+st.subheader (''' 
+This app present interactive dashboards to explore COVID-19 data at global level. ''')
+st.write (''' 📈 You can choosee the region and countries, select the analysis, compare between the variables and countries, and select the time period.''')
 
 #SIDEBAR
 
@@ -84,6 +85,11 @@ with col4:
     interval  = st.selectbox("Select the analysis",("New daily","Weekly","7 days average", "Cumulative"))
 
 
+#STATE AN ERROR
+if not countries:
+    st.error(" ⚠️ Please select at least one country.")
+    
+    
 # Building the charts
 
 ca = px.line( new_df, x = 'date', y = 'new_cases', color = "location")
