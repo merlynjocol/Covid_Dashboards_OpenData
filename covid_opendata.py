@@ -1,20 +1,13 @@
 import pandas as pd
-from pathlib import Path
 import numpy as np
 import datetime
 import plotly.express as px
 import plotly.graph_objects as go
 import json
-from geopy.geocoders import Nominatim  # convert address into latitude and longitude 
-import requests 
+#from geopy.geocoders import Nominatim  # convert address into latitude and longitude 
+#import requests 
 import streamlit as st
 
-
-
-#information
-@st.cache
-def read_markdown_file(markdown_file):
-    return Path(markdown_file).read_text()
 
 
 #Importing data
