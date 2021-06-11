@@ -1,13 +1,13 @@
 Table of Content
 ================
-  * [Covid Dashboards with OpenData](# Covid Dashboards with OpenData)
-  * [Description](# Description)
-  * [Dataset](# Dataset)
-  * [Description of the variables](# Description of the variables:)
-  * [Installation Requirements](# Installation Requirements)
-  * [Software Heritage](# Software Heritage)
-  * [Licensing](# License)
-  * [Credits](# Credits)
+  * [Covid Dashboards with OpenData](#Covid-Dashboards-with-OpenData)
+  * [Description](#Description)
+  * [Dataset](#Dataset)
+  * [Description of the variables](#Description-of-the-variables:)
+  * [Installation Requirements](#Installation-Requirements)
+  * [Software Heritage](#Software-Heritage)
+  * [Licensing](#License)
+  * [Credits](#Credits)
 
 # Covid Dashboards with OpenData
 
