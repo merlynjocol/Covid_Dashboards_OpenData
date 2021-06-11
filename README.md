@@ -36,6 +36,35 @@ To install the project dependencies run pip install -r requirements.txt
 pip install -r requirements.txt
 ```
 
+ ## Libraries:
+ 
+ #libraries for matplotlib charts
+- datetime
+- matplotlib
+- matplotlib.pyplot as plt
+
+#libraries for Plotly graphs
+- plotly.express as px
+- plotly.figure_factory as ff
+- plotly.subplots 
+- make_subplots
+
+#create templates
+- plotly.graph_objects as go
+- plotly.io as pio
+
+- json
+- from geopy.geocoders import Nominatim 
+- requests
+
+#building the app
+- streamlit as st
+- streamlit_folium 
+- folium_static 
+- folium
+
+- altair as alt
+
 # 4. Run the Dashboard
 
 https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py
@@ -48,3 +77,6 @@ NB: you have to pip install folium and pip install streamlit-folium
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+# 6. Contributors
+
+Many thanks to Pierre Poulain(https://github.com/pierrepo), our project mentor.
