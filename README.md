@@ -75,7 +75,7 @@ NB: you have to pip install folium and pip install streamlit-folium
 
 # Software Heritage
 
-[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:f16dc74c8cb24abe9674c52b352154a7eecaabaa/)](https://archive.softwareheritage.org/swh:1:dir:fca41ee7e69602834e957bd897fab273e3269834;origin=https://github.com/merlynjocol/Covid_Dashboards_OpenData.git;visit=swh:1:snp:61fd080253c9888d96ba740354317d0a8743952a;anchor=swh:1:rev:c5f8551b0e6c62c281074c84d197af099db82964)
+[![swh](https://archive.softwareheritage.org/badge/swh:1:dir:fca41ee7e69602834e957bd897fab273e3269834/)](https://archive.softwareheritage.org/swh:1:dir:fca41ee7e69602834e957bd897fab273e3269834;origin=https://github.com/merlynjocol/Covid_Dashboards_OpenData.git;visit=swh:1:snp:61fd080253c9888d96ba740354317d0a8743952a;anchor=swh:1:rev:c5f8551b0e6c62c281074c84d197af099db82964)
 
 # License
 
