@@ -5,7 +5,7 @@ Table of Content
   * [Dataset](#Dataset)
   * [Installation Requirements](#Installation-Requirements)
   * [Software Heritage](#Software-Heritage)
-  * [Licensing](#License)
+  * [Licensing](#Licensing)
   * [Credits](#Credits)
 
 # Covid Dashboards with OpenData
@@ -56,7 +56,7 @@ To install the project dependencies run pip install -r requirements.txt
 pip install -r requirements.txt
 ```
 
- ## Libraries:
+ ### Libraries:
  
 - pandas == 1.1.3
 - numpy == 1.20.0
