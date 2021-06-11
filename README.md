@@ -56,7 +56,7 @@ To install the project dependencies run pip install -r requirements.txt
 pip install -r requirements.txt
 ```
 
- ### Libraries:
+ #### requirements:
  
 - pandas == 1.1.3
 - numpy == 1.20.0
