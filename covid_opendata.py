@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import datetime
+from datetime import datetime, timedelta
 import plotly.express as px
 import plotly.graph_objects as go
 import json
@@ -8,13 +9,25 @@ import json
 #import requests 
 import streamlit as st
 
+#SETTTING THE PAGE TITLE AND ICON
+
+st.set_page_config(layout="wide", page_title= 'Covid Dashboards', page_icon="😷" )
+padding = 3
+st.markdown(f""" <style>
+    .reportview-container .main .block-container{{
+        padding-top: {padding}rem;
+        padding-right: {padding}rem;
+        padding-left: {padding}rem;
+        padding-bottom: {padding}rem;
+    }} </style> """, unsafe_allow_html=True)
+
 
 
 #Importing data
 st.cache(persist=True)
 def load_data():
-    skipcols = ['total_cases_per_million',
-       'total_deaths_per_million', 'reproduction_rate', 'icu_patients',
+    skipcols = [
+       'reproduction_rate', 'icu_patients',
        'icu_patients_per_million', 'hosp_patients',
        'hosp_patients_per_million', 'weekly_icu_admissions',
        'weekly_icu_admissions_per_million', 'weekly_hosp_admissions',
@@ -36,141 +49,186 @@ def load_data():
     return covid_our,covid_w, country_shapes
 covid_our,covid_w, country_shapes = load_data()
 
-st.set_page_config(layout="wide")
 
-# Header
-st.title("COVID-19 Interactive Dashboards")
-#st.text('this is app')
-st.subheader (''' 
-This app present interactive dashboards to explore COVID-19 data at global level. ''')
-st.write (''' 📈 You can choosee the region and countries, select the analysis, compare between the variables and countries, and select the time period.''')
+
 
 #SIDEBAR
+#IMAGE IN THE SIDEBAR
+from PIL import Image
+st.sidebar.image('images/covid_red.png', width=110)
+#st.sidebar.title('''Covid-19 Dashboards''') 
+st.sidebar.write (''' 📈 This app explore COVID-19 data at global level.''')
 
-st.sidebar.write (''' 
-📈 This app explore COVID-19 data at global level''') 
+st.sidebar.header('''First Select the time period''') 
+st.sidebar.write (''' If you want to analyse since Covid-19 starting leave in blank.''')
 
-
-page_names = ["Chart", "Map"]
-page = st.sidebar.radio ("Navigation", page_names, index=1)
-
-# SELECTORS SIDEBAR
-
-
-#footer
+start_date = st.sidebar.date_input('SELECT START DATE', value =datetime(2020, 1, 1))
+end_date = st.sidebar.date_input('SELECT END DATE')
 st.sidebar.markdown ('---')
+# SELECTORS SIDEBAR
+normal = st.sidebar.checkbox("If you want the analysis relative to population")
+
+
+st.sidebar.markdown ('---')
+#footer
 st.sidebar.write (''' 💡 This app use open Datasets from Our World Data. More details here''')
 st.sidebar.write ('''💻 The code is available here.''')
 
+st.sidebar.write ('''Instructions:''')
+st.sidebar.write ('''1. ''')
+st.sidebar.write ('''2. ''')
+st.sidebar.write ('''3. ''')
 
+
+
+st.markdown ('<h1 style= "font-family:Verdana; color:Black; font-size: 40px;">Covid Interactive Dashboards </h1>', unsafe_allow_html=True)
+#st.text('this is app')
+st.write (''' 
+This app present interactive dashboards to explore COVID-19 data at global level. You can choose the region and countries, select the analysis, compare between the variables and countries, and select the time period.''')
 
 #SECOND CONTAINER 
 #Titles
-st.subheader ('''Select the country, variable, analysis and time period''')
+st.subheader ('''📈 Select the country, metric, interval and time period for the analysis''')
 
 
-#Select the variable 
-col1, col2, col3, col4 = st.beta_columns([15, 15, 15, 15])
+# SELECT BOXES IN FRAMEWORK HORIZONTAL (Select a variable)
+col1, col2, col3, col4 = st.beta_columns([1, 1, 1, 1])
 
 with col1: 
-    region = st.multiselect("Select a Region", covid_w['continent'].unique())
+    continent = st.selectbox("CONTINENT", covid_w['continent'].dropna().unique())
+    country_continent = covid_w[covid_w['continent'] == continent ].groupby('location').count().reset_index()
 with col2:   
     #select the country
-    countries = st.multiselect("Tap or add a Country",covid_w['location'].unique())
+    countries = st.multiselect("COUNTRY", country_continent['location'].unique())
     # Built the dataframe with the countries selected
-    new_df = covid_w[covid_w['location'].isin(countries)]
 with col3:
-        variable = st.selectbox("Select the Variable",("Cases","Deaths","Cases per million", "Deaths per million", "Deaths per million (smoothed on a week)", "Cases per million (smoothed on a week)"))
+    variable = st.selectbox("METRIC",("Cases","Deaths"))                         
 with col4:
-    interval  = st.selectbox("Select the analysis",("New daily","Weekly","7 days average", "Cumulative"))
-
-
+    interval  = st.selectbox("INTERVAL",("Daily","Weekly","7 days average", "Cumulative", 
+                                                    'Daily per million people',
+                                                    "Cumulative per million people" ))
 #STATE AN ERROR
 if not countries:
     st.error(" ⚠️ Please select at least one country.")
     
     
-# Building the charts
+# DF FOR VISUALISATIONS
 
-ca = px.line( new_df, x = 'date', y = 'new_cases', color = "location")
-#MODELO 1-WHITE BACKGROUND
-ca.update_layout(title="Daily Cases of Covid19",
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People'),
-                 legend_title=dict(text='<b>Countries</b>'), 
-                 width = 800, height= 500) 
-                 #plot_bgcolor= "white")
-ca.update_xaxes(rangeslider_visible=True)
-                 
-#Death Chart 
-de = px.line( new_df, x = 'date', y = 'new_deaths', color = "location")
+covid_w['date'] = pd.to_datetime(covid_w['date']).dt.date # date format
 
-de.update_layout(title="Daily Deaths by Covid19", 
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                  )
+new_df = covid_w[covid_w['location'].isin(countries)] # df for charts
 
-#Cases chart per million
-ca_pm = px.line( new_df, x = 'date', y = 'new_cases_per_million', color = "location")
+                            
+# BUILDING INTERACTIVES VISUALISATIONS                        
+if normal:   
+    if variable == 'Cases':
+        if interval == "Daily":
+            fig = px.line( new_df, x = 'date', y = 'new_cases_per_million' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases per million people<b>")
+        
+        elif interval == "7 days average":
+            new_df['7_days_avg_pm'] = new_df['new_cases_per_million'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg_pm' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases per million. 7-day average<b>", )    
+        
+        elif interval == "Cumulative per million people" :
+            fig = px.line( new_df, x = 'date', y = 'total_cases_per_million' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 cases per million people<b>")                            
+                            
+    elif variable =='Deaths':  
+        if interval == "Daily per million people":
+            fig = px.line( new_df, x = 'date', y = 'new_deaths_per_million' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths per million people<b>")
+        
+        elif interval == "7 days average":
+            new_df['7_days_avg_pm'] = new_df['new_deaths_per_million'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg_pm' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths shown is the rolling 7-day average<b>", )  
+        
+        elif interval == "Cumulative per million people" :
+            fig = px.line( new_df, x = 'date', y = 'total_deaths_per_million' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 deaths per million people</b>") 
+else:
+    
+    if variable == 'Cases':
+        
+        if interval == "Daily":
+            fig = px.line( new_df, x = 'date', y = 'new_cases' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases<b>")
+        
+        elif interval == "7 days average":
+            new_df['7_days_avg'] = new_df['new_cases'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases shown is the rolling 7-day average<b>", )     
 
-ca_pm.update_layout(title="Daily Cases of Covid19 per million habitants",
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People (in million)'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                 )
-
-#Death Chart per million
-de_pm = px.line( new_df, x = 'date', y = 'new_deaths_per_million', color = "location")
-
-de_pm.update_layout(title="Daily Deaths by Covid19 per million", 
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People (in million)'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                 )
-
-#Cases chart per million smoothed on week
-ca_pms = px.line( new_df, x = 'date', y = 'new_cases_smoothed_per_million', color = "location")
-
-ca_pms.update_layout(title="Daily Cases of Covid19 per million habitants",
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People (in million)'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                 )
-
-#Death Chart per million smoothed on week
-de_pms = px.line( new_df, x = 'date', y = 'new_deaths_smoothed_per_million', color = "location")
-
-de_pms.update_layout(title="Daily Deaths by Covid19 per million", 
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People (in million)'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                  )
-
-
-col1, col2 = st.beta_columns([3, 1])
-with col1:
-    if variable =='Cases':
-        st.plotly_chart(ca, use_container_width=True)   
-    elif variable =='Deaths':
-        st.plotly_chart(de, use_container_width=True) 
-    elif variable =='Cases per million':
-        st.plotly_chart(ca_pm, use_container_width=True)   
-    elif variable =='Deaths per million':
-        st.plotly_chart(de_pm, use_container_width=True) 
-    elif variable =='Cases per million smoothed on a week':
-        st.plotly_chart(ca_pms, use_container_width=True)   
-    elif variable =='Deaths per million smoothed on a week':
-        st.plotly_chart(de_pms, use_container_width=True)    
-
-with col2:   
-    st.title('''  ''')
-    st.date_input('Select start date', datetime.date(2020, 1, 1))
-    st.date_input('Select end date')
-    normalization = st.checkbox("Relative to population")
+        elif interval == "Cumulative":
+            fig = px.line( new_df, x = 'date', y = 'total_cases' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 cases<b>")
+                   
+                            
+    elif variable =='Deaths':           
+                       
+        if interval == "Daily":
+            fig = px.line( new_df, x = 'date', y = 'new_deaths' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths<b>")
+    
+     
+        elif interval == "7 days average":
+            new_df['7_days_avg_d'] = new_df['new_deaths'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg_d' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths shown is the rolling 7-day average<b>", )     
 
     
-my_expander = st.beta_expander("ℹ️ Covid Info", expanded=True)
+        elif interval == "Cumulative":
+            fig = px.line( new_df, x = 'date', y = 'total_deaths' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 deaths<b>")
+    
+                
+     
+
+    
+fig.update_layout(plot_bgcolor="white",
+                      
+                      
+                       title=dict(font=dict(
+                                     size = 22)),
+                        xaxis = dict(title = 'Date', 
+                                    showline=True,
+                                    showgrid=True,
+                                    linecolor='rgb(204, 204, 204)',
+                                    linewidth=0.5,
+                                    ticks='outside',
+                                    tickmode="array",
+                                    tickfont = dict(family = 'Arial', 
+                                                    size = 12, 
+                                                    color = 'rgb(82, 82, 82)'),
+                                    showticklabels=True), 
+                        yaxis = dict(title = 'Number of People', 
+                                    showgrid=True,
+                                     gridcolor = '#abd3df',
+                                    zeroline=False,
+                                    showline=True,
+                                    linecolor='rgb(204, 204, 204)',
+                                    linewidth=0.5,
+                                     tickmode="array",
+                                     visible= True,
+                                     ticks='outside',
+                                    showticklabels=True), 
+                        legend_title=dict(text='<b>Countries</b>',
+                                     font=dict(
+                                     size = 16)),
+                         width = 700, height= 500)
+
+
+   
+st.plotly_chart(fig, use_container_width=True)    
+                          
+                          
+time_period =  covid_w.loc[(covid_w['date'] >= start_date) & (covid_w['date'] <= end_date),:] #time period  
+
+
+
+my_expander = st.beta_expander("ℹ️ Be safe from Coronovirus. Info", expanded=True)
 with my_expander:
     st.markdown(""" Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.
 
@@ -181,3 +239,6 @@ with my_expander:
 😷 Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face. 
 The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).
 More info in: (https://www.who.int/health-topics/coronavirus#tab=tab_1)""")
+
+                          
+                          
