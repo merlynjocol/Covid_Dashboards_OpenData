@@ -32,9 +32,9 @@ The main goal of this project is to do analysis,  built and deploy innteractive 
 # 3. Installation Requirements
 
 To install the project dependencies run pip install -r requirements.txt
-
+```
 pip install -r requirements.txt
-
+```
 
 
 In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
