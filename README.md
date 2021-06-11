@@ -5,7 +5,7 @@
 # Description
 This project is developed during the Course Open Data at the Master AIRE in the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en)
 
-The main goal of this project is to built and deploy innteractive dashboards using open data and data analysis
+The main goal of this project is to built and deploy interactive dashboards using open data and data analysis
 
 # Dataset 
  The dataset  is from OurWorldData 
