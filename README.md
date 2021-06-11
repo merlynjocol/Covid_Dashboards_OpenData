@@ -13,7 +13,7 @@ The main goal of this project is to do analysis,  built and deploy innteractive 
  https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true
  
 
- ## Description of the variables: 
+ ## Description of the variables
 
 - iso_code= ISO 3166-1 alpha-3 – three-letter country codes
 - continent= Continent of the geographical location
@@ -41,7 +41,7 @@ In order to install streamlit and show the streamlit dashboard, please refer to 
 In order to install other libraries, the team used pip install {} on an anaconda terminal. 
 NB: you have to pip install folium and pip install streamlit-folium
 
-# 4. License: 
+# 4. License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
