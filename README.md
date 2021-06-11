@@ -79,4 +79,4 @@ NB: you have to pip install folium and pip install streamlit-folium
 
 # 6. Contributors
 
-project mentor [Pierre Poulain](https://github.com/pierrepo),.
+[Pierre Poulain](https://github.com/pierrepo), our project mentor
