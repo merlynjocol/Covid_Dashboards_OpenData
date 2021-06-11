@@ -50,17 +50,38 @@ https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_open
 
 # Installation Requirements
 
-To install the project dependencies run pip install -r requirements.txt
+Download the files Zip
 ```
-pip install -r requirements.txt
+Code - Download ZIP
+````
+
+Clone the repository 
+
+```
+git clone https://github.com/merlynjocol/Covid_Dashboards_OpenData.git
 ```
 
- #### requirements:
- 
+To install the project dependencies run 
+
+```
+pip install -r requirements.txt
+
+```
+
+Requirements libraries includes:
+
+```
 - pandas == 1.1.3
 - numpy == 1.20.0
 - plotly == 4.14.3
 - streamlit == 0.81.1
+```
+
+run the streamlit code
+
+```
+streamlit run covid_opendata.py
+```
 
 # Software Heritage
 
