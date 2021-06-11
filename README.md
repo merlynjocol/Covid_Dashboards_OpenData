@@ -40,3 +40,10 @@ pip install -r requirements.txt
 In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
 In order to install other libraries, the team used pip install {} on an anaconda terminal. 
 NB: you have to pip install folium and pip install streamlit-folium
+
+# 4. Licensing
+MIT License
+
+
+# 5. Contributors
+
