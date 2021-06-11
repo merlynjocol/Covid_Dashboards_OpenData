@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 [![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:8c6d93d091c8e0fa0b8e2133183f6867cac42540/)](https://archive.softwareheritage.org/swh:1:dir:8c6d93d091c8e0fa0b8e2133183f6867cac42540)
 
-# License
+# Licensing
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
