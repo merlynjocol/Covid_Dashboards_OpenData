@@ -2,12 +2,12 @@
 
 **Data Analysis Team:** Adam Kozlowski, Lisa Formentini, Merlyn Johanna Hurtado
 
-# 1. Description
+# Description
 This project is developed during the Course Open Data at the Master AIRE in the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en)
 
 The main goal of this project is to do analysis,  built and deploy innteractive dashboards using open data 
 
-# 2. Dataset 
+# Dataset 
  The dataset  is from OurWorldData 
  
  https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true
@@ -29,7 +29,7 @@ The main goal of this project is to do analysis,  built and deploy innteractive 
 - new_deaths_smoothed= New deaths attributed to COVID-19 (7-day smoothed)
 - people_fully_vaccinated= Total number of people who received all doses prescribed by the vaccination protocol
 
-# 3. Installation Requirements
+# Installation Requirements
 
 To install the project dependencies run pip install -r requirements.txt
 ```
@@ -65,7 +65,7 @@ pip install -r requirements.txt
 
 - altair as alt
 
-# 4. Run the Dashboard
+# Run the Dashboard
 
 https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py
 
@@ -73,14 +73,14 @@ In order to install streamlit and show the streamlit dashboard, please refer to 
 In order to install other libraries, the team used pip install {} on an anaconda terminal. 
 NB: you have to pip install folium and pip install streamlit-folium
 
-# 5. Software Heritage
+# Software Heritage
 
 XXX
 
-# 6. License
+# License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# 7. Credits
+# Credits
 
 Many thanks to [Pierre Poulain](https://github.com/pierrepo), our project mentor
