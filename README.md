@@ -83,4 +83,4 @@ XXX
 
 # 7. Contributors
 
-[Pierre Poulain](https://github.com/pierrepo), our project mentor
+Many thanks to [Pierre Poulain](https://github.com/pierrepo), our project mentor
