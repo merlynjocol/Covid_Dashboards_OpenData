@@ -38,32 +38,10 @@ pip install -r requirements.txt
 
  ## Libraries:
  
- #libraries for matplotlib charts
-- datetime
-- matplotlib
-- matplotlib.pyplot as plt
-
-#libraries for Plotly graphs
-- plotly.express as px
-- plotly.figure_factory as ff
-- plotly.subplots 
-- make_subplots
-
-#create templates
-- plotly.graph_objects as go
-- plotly.io as pio
-
-- json
-- from geopy.geocoders import Nominatim 
-- requests
-
-#building the app
-- streamlit as st
-- streamlit_folium 
-- folium_static 
-- folium
-
-- altair as alt
+pandas == 1.1.3
+numpy == 1.20.0
+plotly == 4.14.3
+streamlit == 0.81.1
 
 # Run the Dashboard
 
