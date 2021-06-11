@@ -12,6 +12,7 @@ import streamlit as st
 #SETTTING THE PAGE TITLE AND ICON
 
 st.set_page_config(layout="wide", page_title= 'Covid Dashboards', page_icon="😷" )
+
 padding = 3
 st.markdown(f""" <style>
     .reportview-container .main .block-container{{
@@ -188,8 +189,7 @@ else:
 
     
 fig.update_layout(plot_bgcolor="white",
-                      hovermode="x unified", 
-                      
+                       hovermode="x unified",                      
                        title=dict(font=dict(
                                      size = 22)),
                         xaxis = dict(title = 'Date', 
