@@ -73,10 +73,14 @@ In order to install streamlit and show the streamlit dashboard, please refer to 
 In order to install other libraries, the team used pip install {} on an anaconda terminal. 
 NB: you have to pip install folium and pip install streamlit-folium
 
-# 5. License
+# 5. Software Heritage
+
+XXX
+
+# 6. License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# 6. Contributors
+# 7. Contributors
 
 [Pierre Poulain](https://github.com/pierrepo), our project mentor
