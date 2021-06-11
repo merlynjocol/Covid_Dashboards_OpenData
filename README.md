@@ -81,6 +81,6 @@ XXX
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# 7. Contributors
+# 7. Credits
 
 Many thanks to [Pierre Poulain](https://github.com/pierrepo), our project mentor
