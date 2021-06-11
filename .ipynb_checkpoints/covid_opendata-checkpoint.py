@@ -9,6 +9,18 @@ import json
 #import requests 
 import streamlit as st
 
+#SETTTING THE PAGE TITLE AND ICON
+
+st.set_page_config(layout="wide", page_title= 'Covid Dashboards', page_icon="😷" )
+padding = 3
+st.markdown(f""" <style>
+    .reportview-container .main .block-container{{
+        padding-top: {padding}rem;
+        padding-right: {padding}rem;
+        padding-left: {padding}rem;
+        padding-bottom: {padding}rem;
+    }} </style> """, unsafe_allow_html=True)
+
 
 
 #Importing data
@@ -37,45 +49,42 @@ def load_data():
     return covid_our,covid_w, country_shapes
 covid_our,covid_w, country_shapes = load_data()
 
-#st.set_page_config(layout="wide")
-padding = 3
-st.markdown(f""" <style>
-    .reportview-container .main .block-container{{
-        padding-top: {padding}rem;
-        padding-right: {padding}rem;
-        padding-left: {padding}rem;
-        padding-bottom: {padding}rem;
-    }} </style> """, unsafe_allow_html=True)
+
 
 
 #SIDEBAR
 #IMAGE IN THE SIDEBAR
 from PIL import Image
-col1, col2 = st.beta_columns([1, 1])
-with col1: 
-    st.sidebar.image('images/covid_red.png', width=110)
-with col2: 
-    st.sidebar.title('''Covid-19 Dashboards''') 
-    
-st.sidebar.write (''' 📈 This app explore COVID-19 data at global level''') 
+st.sidebar.image('images/covid_red.png', width=110)
+#st.sidebar.title('''Covid-19 Dashboards''') 
+st.sidebar.write (''' 📈 This app explore COVID-19 data at global level.''')
 
+st.sidebar.header('''First Select the time period''') 
+st.sidebar.write (''' If you want to analyse since Covid-19 starting leave in blank.''')
 
-page_names = ["Chart", "Map"]
-page = st.sidebar.radio ("Navigation", page_names, index=1)
-
-# SELECTORS SIDEBAR
-
-#footer
+start_date = st.sidebar.date_input('SELECT START DATE', value =datetime(2020, 1, 1))
+end_date = st.sidebar.date_input('SELECT END DATE')
 st.sidebar.markdown ('---')
+# SELECTORS SIDEBAR
+normal = st.sidebar.checkbox("If you want the analysis relative to population")
+
+
+st.sidebar.markdown ('---')
+#footer
 st.sidebar.write (''' 💡 This app use open Datasets from Our World Data. More details here''')
 st.sidebar.write ('''💻 The code is available here.''')
 
+st.sidebar.write ('''Instructions:''')
+st.sidebar.write ('''1. ''')
+st.sidebar.write ('''2. ''')
+st.sidebar.write ('''3. ''')
 
-# HEADER MAIN PAGE 
-st.title("COVID-19 Interactive Dashboards")
+
+
+st.markdown ('<h1 style= "font-family:Verdana; color:Black; font-size: 40px;">Covid Interactive Dashboards </h1>', unsafe_allow_html=True)
 #st.text('this is app')
 st.write (''' 
-This app present interactive dashboards to explore COVID-19 data at global level. You can choosee the region and countries, select the analysis, compare between the variables and countries, and select the time period.''')
+This app present interactive dashboards to explore COVID-19 data at global level. You can choose the region and countries, select the analysis, compare between the variables and countries, and select the time period.''')
 
 #SECOND CONTAINER 
 #Titles
@@ -90,7 +99,7 @@ with col1:
     country_continent = covid_w[covid_w['continent'] == continent ].groupby('location').count().reset_index()
 with col2:   
     #select the country
-    countries = st.multiselect("COUNTRY",country_continent['location'].unique())
+    countries = st.multiselect("COUNTRY", country_continent['location'].unique())
     # Built the dataframe with the countries selected
 with col3:
     variable = st.selectbox("METRIC",("Cases","Deaths"))                         
@@ -111,82 +120,115 @@ new_df = covid_w[covid_w['location'].isin(countries)] # df for charts
 
                             
 # BUILDING INTERACTIVES VISUALISATIONS                        
+if normal:   
+    if variable == 'Cases':
+        if interval == "Daily":
+            fig = px.line( new_df, x = 'date', y = 'new_cases_per_million' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases per million people<b>")
+        
+        elif interval == "7 days average":
+            new_df['7_days_avg_pm'] = new_df['new_cases_per_million'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg_pm' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases per million. 7-day average<b>", )    
+        
+        elif interval == "Cumulative per million people" :
+            fig = px.line( new_df, x = 'date', y = 'total_cases_per_million' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 cases per million people<b>")                            
                             
-                            
-if variable == 'Cases':
-    if interval == "Daily":
-        fig = px.line( new_df, x = 'date', y = 'new_cases' , color = "location")
-        fig.update_layout(title="Daily new confirmed COVID-19 cases")
+    elif variable =='Deaths':  
+        if interval == "Daily per million people":
+            fig = px.line( new_df, x = 'date', y = 'new_deaths_per_million' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths per million people<b>")
+        
+        elif interval == "7 days average":
+            new_df['7_days_avg_pm'] = new_df['new_deaths_per_million'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg_pm' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths shown is the rolling 7-day average<b>", )  
+        
+        elif interval == "Cumulative per million people" :
+            fig = px.line( new_df, x = 'date', y = 'total_deaths_per_million' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 deaths per million people</b>") 
+else:
     
-     # NEED TO BUILT WEEKLY
-    elif interval == "7 days average":
-        new_df['7_days_avg'] = new_df['new_cases'].rolling(window=7).mean().round(2)  
-        fig = px.line( new_df, x = 'date', y = '7_days_avg' , color = "location")
-        fig.update_layout(title="Daily new confirmed COVID-19 cases shown is the rolling 7-day average", )     
+    if variable == 'Cases':
+        
+        if interval == "Daily":
+            fig = px.line( new_df, x = 'date', y = 'new_cases' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases<b>")
+        
+        elif interval == "7 days average":
+            new_df['7_days_avg'] = new_df['new_cases'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 cases shown is the rolling 7-day average<b>", )     
 
-    elif interval == "Cumulative":
-        fig = px.line( new_df, x = 'date', y = 'total_cases' , color = "location")
-        fig.update_layout(title="Cumulative confirmed COVID-19 cases")
-                          
-    elif interval == "Daily per million people":
-        fig = px.line( new_df, x = 'date', y = 'new_cases_per_million' , color = "location")
-        fig.update_layout(title="Daily new confirmed COVID-19 cases per million people")
-
-    elif interval == "Cumulative per million people" :
-        fig = px.line( new_df, x = 'date', y = 'total_cases_per_million' , color = "location")
-        fig.update_layout(title="Cumulative confirmed COVID-19 cases per million people")                            
+        elif interval == "Cumulative":
+            fig = px.line( new_df, x = 'date', y = 'total_cases' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 cases<b>")
+                   
                             
-elif variable =='Deaths':           
+    elif variable =='Deaths':           
                        
-    if interval == "Daily":
-        fig = px.line( new_df, x = 'date', y = 'new_deaths' , color = "location")
-        fig.update_layout(title="Daily new confirmed COVID-19 deaths")
+        if interval == "Daily":
+            fig = px.line( new_df, x = 'date', y = 'new_deaths' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths<b>")
     
-     # NEED TO BUILT WEEKLY
-    elif interval == "7 days average":
-        new_df['7_days_avg'] = new_df['new_deaths'].rolling(window=7).mean().round(2)  
-        fig = px.line( new_df, x = 'date', y = '7_days_avg' , color = "location")
-        fig.update_layout(title="Daily new confirmed COVID-19 deaths shown is the rolling 7-day average", )     
+     
+        elif interval == "7 days average":
+            new_df['7_days_avg_d'] = new_df['new_deaths'].rolling(window=7).mean().round(2)  
+            fig = px.line( new_df, x = 'date', y = '7_days_avg_d' , color = "location")
+            fig.update_layout(title="<b>Daily new confirmed COVID-19 deaths shown is the rolling 7-day average<b>", )     
 
-    elif interval == "Cumulative":
-        fig = px.line( new_df, x = 'date', y = 'total_deaths' , color = "location")
-        fig.update_layout(title="Cumulative confirmed COVID-19 deaths")
-                          
-    elif interval == "Daily per million people":
-        fig = px.line( new_df, x = 'date', y = 'new_deaths_per_million' , color = "location")
-        fig.update_layout(title="Daily new confirmed COVID-19 deaths per million people")
-
-    elif interval == "Cumulative per million people" :
-        fig = px.line( new_df, x = 'date', y = 'total_deaths_per_million' , color = "location")
-        fig.update_layout(title="Cumulative confirmed COVID-19 deaths per million people")                            
-
-
-fig.update_layout( 
-                 xaxis = dict(title = 'Date'), 
-                 yaxis = dict(title = 'Number of People'),
-                 legend_title=dict(text='<b>Countries</b>'),
-                 width = 800, height= 500) 
-    #fig.update_xaxes(rangeslider_visible=True)
-
-
-col1, col2 = st.beta_columns([3, 1])
-with col1:
     
-    st.plotly_chart(fig, use_container_width=True)    
-                          
-                          
-with col2:   
-    st.title('''  ''')
-    normalization = st.checkbox("Relative to population")
-    start_date = st.date_input('Select start date', value =datetime(2020, 1, 1))
-    end_date = st.date_input('Select end date', value = covid_w.date.max())
+        elif interval == "Cumulative":
+            fig = px.line( new_df, x = 'date', y = 'total_deaths' , color = "location")
+            fig.update_layout(title="<b>Cumulative confirmed COVID-19 deaths<b>")
+    
+                
+     
 
+    
+fig.update_layout(plot_bgcolor="white",
+                      hovermode="x unified", 
+                      
+                       title=dict(font=dict(
+                                     size = 22)),
+                        xaxis = dict(title = 'Date', 
+                                    showline=True,
+                                    showgrid=True,
+                                    linecolor='rgb(204, 204, 204)',
+                                    linewidth=0.5,
+                                    ticks='outside',
+                                    tickmode="array",
+                                    tickfont = dict(family = 'Arial', 
+                                                    size = 12, 
+                                                    color = 'rgb(82, 82, 82)'),
+                                    showticklabels=True), 
+                        yaxis = dict(title = 'Number of People', 
+                                    showgrid=True,
+                                     gridcolor = '#abd3df',
+                                    zeroline=False,
+                                    showline=True,
+                                    linecolor='rgb(204, 204, 204)',
+                                    linewidth=0.5,
+                                     tickmode="array",
+                                     visible= True,
+                                     ticks='outside',
+                                    showticklabels=True), 
+                        legend_title=dict(text='<b>Countries</b>',
+                                     font=dict(
+                                     size = 16)),
+                         width = 700, height= 500)
+
+
+   
+st.plotly_chart(fig, use_container_width=True)    
+                          
+                          
 time_period =  covid_w.loc[(covid_w['date'] >= start_date) & (covid_w['date'] <= end_date),:] #time period  
-#covid_period = covid_w.loc[start_date : end_date + timedelta(days=1)]
 
 
 
-my_expander = st.beta_expander("ℹ️ Covid Info", expanded=True)
+my_expander = st.beta_expander("ℹ️ Be safe from Coronovirus. Info", expanded=True)
 with my_expander:
     st.markdown(""" Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.
 
