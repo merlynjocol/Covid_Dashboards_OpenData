@@ -7,6 +7,14 @@ This project is developed during the Course Open Data at the Master AIRE in the 
 
 The main goal of this project is to built and deploy interactive dashboards using open data and data analysis
 
+# Run the Dashboard
+
+https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py
+
+In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
+In order to install other libraries, the team used pip install {} on an anaconda terminal. 
+NB: you have to pip install folium and pip install streamlit-folium
+
 # Dataset 
  The dataset  is from OurWorldData 
  
@@ -42,14 +50,6 @@ pip install -r requirements.txt
 - numpy == 1.20.0
 - plotly == 4.14.3
 - streamlit == 0.81.1
-
-# Run the Dashboard
-
-https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py
-
-In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
-In order to install other libraries, the team used pip install {} on an anaconda terminal. 
-NB: you have to pip install folium and pip install streamlit-folium
 
 # Software Heritage
 
