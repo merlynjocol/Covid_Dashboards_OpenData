@@ -36,6 +36,9 @@ To install the project dependencies run pip install -r requirements.txt
 pip install -r requirements.txt
 ```
 
+# 4. Run the Dashboard
+
+https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py
 
 In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
 In order to install other libraries, the team used pip install {} on an anaconda terminal. 
