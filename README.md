@@ -3,7 +3,6 @@ Table of Content
   * [Covid Dashboards with OpenData](#Covid-Dashboards-with-OpenData)
   * [Description](#Description)
   * [Dataset](#Dataset)
-  * [Description of the variables](#Description-of-the-variables)
   * [Installation Requirements](#Installation-Requirements)
   * [Software Heritage](#Software-Heritage)
   * [Licensing](#License)
@@ -18,7 +17,7 @@ This project is developed during the Course Open Data at the Master AIRE in the 
 
 The main goal of this project is to built and deploy interactive dashboards using open data and data analysis
 
-## Run the Dashboard
+### Run the Dashboard
 
 https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py
 
@@ -34,7 +33,7 @@ https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_open
  https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true
  
 
- ## Description of the variables:
+ ### Description of the variables:
 
 - iso_code= ISO 3166-1 alpha-3 – three-letter country codes
 - continent= Continent of the geographical location
