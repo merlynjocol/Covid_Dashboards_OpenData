@@ -48,7 +48,7 @@ https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_open
 - new_deaths_smoothed= New deaths attributed to COVID-19 (7-day smoothed)
 - people_fully_vaccinated= Total number of people who received all doses prescribed by the vaccination protocol
 
-# Installation Requirements and Guidelines to Run the Dashboard from your Local Machine
+# Installation Requirements & Guidelines to Run the App from your Local Machine
 
 Download the files Zip
 ```
@@ -71,10 +71,10 @@ pip install -r requirements.txt
 Requirements libraries includes:
 
 ```
-- pandas == 1.1.3
-- numpy == 1.20.0
-- plotly == 4.14.3
-- streamlit == 0.81.1
+pandas == 1.1.3
+numpy == 1.20.0
+plotly == 4.14.3
+streamlit == 0.81.1
 ```
 
 run the streamlit code
