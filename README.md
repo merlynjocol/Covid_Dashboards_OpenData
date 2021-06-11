@@ -8,12 +8,12 @@ This project is developed during the Course Open Data at the Master AIRE in the 
 The main goal of this project is to do analysis,  built and deploy innteractive dashboards using open data 
 
 # 2. Dataset 
- We use the data set from OurWorldData 
+ The dataset  is from OurWorldData 
  
  https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true
  
 
---> Here are the description of the variables: 
+ ## Description of the variables: 
 
 - iso_code= ISO 3166-1 alpha-3 – three-letter country codes
 - continent= Continent of the geographical location
@@ -29,43 +29,14 @@ The main goal of this project is to do analysis,  built and deploy innteractive 
 - new_deaths_smoothed= New deaths attributed to COVID-19 (7-day smoothed)
 - people_fully_vaccinated= Total number of people who received all doses prescribed by the vaccination protocol
 
-# 3. Libraries  
+# 3. Installation Requirements
 
-Here are the libraries that shall be used. 
+To install the project dependencies run pip install -r requirements.txt
 
-- pandas as pd
-- numpy as np
+pip install -r requirements.txt
 
-#libraries for matplotlib charts
-- datetime
-- matplotlib
-- matplotlib.pyplot as plt
 
-#libraries for Plotly graphs
-- plotly.express as px
-- plotly.figure_factory as ff
-- plotly.subplots 
-- make_subplots
-
-#create templates
-- plotly.graph_objects as go
-- plotly.io as pio
-
-- json
-- from geopy.geocoders import Nominatim 
-- requests
-
-#building the app
-- streamlit as st
-- streamlit_folium 
-- folium_static 
-- folium
-
-- altair as alt
 
 In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
 In order to install other libraries, the team used pip install {} on an anaconda terminal. 
 NB: you have to pip install folium and pip install streamlit-folium
-
-Please download the world-countries.json file.
-
