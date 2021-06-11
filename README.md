@@ -48,7 +48,7 @@ https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_open
 - new_deaths_smoothed= New deaths attributed to COVID-19 (7-day smoothed)
 - people_fully_vaccinated= Total number of people who received all doses prescribed by the vaccination protocol
 
-# Installation Requirements
+# Installation Requirements and Guidelines to Run the Dashboard from your Local Machine
 
 Download the files Zip
 ```
