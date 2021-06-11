@@ -1,6 +1,6 @@
 Table of Content
 ================
-  * [Covid Dashboards with OpenData](#Covid-Dashboards-with-OpenData)
+* [Covid Dashboards with OpenData](#Covid-Dashboards-with-OpenData)
   * [Description](#Description)
   * [Dataset](#Dataset)
   * [Installation Requirements](#Installation-Requirements)
