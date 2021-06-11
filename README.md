@@ -1,7 +1,6 @@
 Table of Content
 ================
 * [Covid Dashboards with OpenData](#Covid-Dashboards-with-OpenData)
-  * [Description](#Description)
   * [Dataset](#Dataset)
   * [Installation Requirements](#Installation-Requirements)
   * [Software Heritage](#Software-Heritage)
@@ -12,7 +11,7 @@ Table of Content
 
 **Data Analysis Team:** [Adam Kozlowski](https://github.com/kozload), [Lisa Formentini](https://github.com/fmtlisa), [Merlyn Johanna Hurtado](https://github.com/merlynjocol)
 
-# Description
+### Description
 This project is developed during the Course Open Data at the Master AIRE in the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en)
 
 The main goal of this project is to built and deploy interactive dashboards using open data and data analysis
