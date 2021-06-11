@@ -38,10 +38,10 @@ pip install -r requirements.txt
 
  ## Libraries:
  
-pandas == 1.1.3
-numpy == 1.20.0
-plotly == 4.14.3
-streamlit == 0.81.1
+- pandas == 1.1.3
+- numpy == 1.20.0
+- plotly == 4.14.3
+- streamlit == 0.81.1
 
 # Run the Dashboard
 
