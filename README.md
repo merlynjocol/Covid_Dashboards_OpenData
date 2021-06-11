@@ -1,13 +1,13 @@
 Table of Content
 ================
-  * [Covid Dashboards with OpenData](#Covid-Dashboards-with-OpenData)
-  * [Description](#Description)
-  * [Dataset](#Dataset)
-  ** [Description of the variables](#Description-of-the-variables)
-  * [Installation Requirements](#Installation-Requirements)
-  * [Software Heritage](#Software-Heritage)
-  * [Licensing](#License)
-  * [Credits](#Credits)
+  * [Covid Dashboards with OpenData](# Covid Dashboards with OpenData)
+  * [Description](# Description)
+  * [Dataset](# Dataset)
+  * [Description of the variables](# Description of the variables:)
+  * [Installation Requirements](# Installation Requirements)
+  * [Software Heritage](# Software Heritage)
+  * [Licensing](# License)
+  * [Credits](# Credits)
 
 # Covid Dashboards with OpenData
 
@@ -18,13 +18,15 @@ This project is developed during the Course Open Data at the Master AIRE in the 
 
 The main goal of this project is to built and deploy interactive dashboards using open data and data analysis
 
-## Run the Dashboard
+# Run the Dashboard
 
 https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py
 
-In order to install streamlit and show the streamlit dashboard, please refer to the official website: https://streamlit.io/#install
-In order to install other libraries, the team used pip install {} on an anaconda terminal. 
-NB: you have to pip install folium and pip install streamlit-folium
+1. Select the TIME PERIOD. The data is daily from 01-01-2020
+
+2. Select the COUNTRY or COUNTRIES, the METRIC to analyse and the interval
+
+3.  Select NORMALIZED data if you want to do analyses of the metrics relative by population in the country
 
 # Dataset 
  The dataset  is from OurWorldData 
