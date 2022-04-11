@@ -100,7 +100,7 @@ col1, col2, col3, col4 = st.beta_columns([1, 1, 1, 1])
     #country_continent = covid_w[covid_w['continent'] == continent ].groupby('location').count().reset_index()
 with col1:   
     #select the country
-    countries = st.multiselect("COUNTRY", covid_w['location'].unique())
+    countries = st.multiselect("COUNTRY or COUNTRIES", covid_w['location'].unique())
     # Built the dataframe with the countries selected
 with col2:
     variable = st.selectbox("METRIC",("Cases","Deaths"))                         
