@@ -110,17 +110,12 @@ with col2:
 with col3:
     interval  = st.selectbox("INTERVAL",("Daily","7 days average", "Cumulative" ))
 #STATE AN ERROR
-#if not countries:
-   #st.error(" ⚠️ Please select at least one country.")
+if not countries:
+   st.error(" ⚠️ Please select at least one country.")
+   st.stop()
 with col4: 
     normal = st.selectbox("Analysis Relative to Population", ("Non-Normalized","Normalized"))
     
-    
-try:
-     if not countries
-except:
-     st.error("Please make sure that you only enter a number")
-     st.stop()
 
 
 # DF FOR VISUALISATIONS
