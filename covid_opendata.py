@@ -89,7 +89,7 @@ This app present interactive dashboards to explore COVID-19 data, to compare cou
 
 #SECOND CONTAINER 
 #Titles
-st.subheader ('''📈 SELECT. Choose the Country/Countries, Metric, Interval and Non/Normalized Data''')
+st.subheader ('''📈 SELECT. Choose the Country, Metric, Interval and Non/Normalized Data''')
 
 
 # SELECT BOXES IN FRAMEWORK HORIZONTAL (Select a variable)
