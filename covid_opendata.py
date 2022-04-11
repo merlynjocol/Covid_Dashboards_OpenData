@@ -62,8 +62,8 @@ covid_our,covid_w = load_data()
 from PIL import Image
 st.sidebar.image('images/covid_red.png', width=110)
 #st.sidebar.title('''Covid-19 Dashboards''') 
-st.sidebar.write (''' 📈 This app explore COVID-19 data at global level.''')
-st.sidebar.header('''FIRST. Select The Time Period''') 
+st.sidebar.write (''' 📈 This app explore COVID-19 data Worldwide.''')
+st.sidebar.header('''FIRST STEP. Select The Time Period''') 
 st.sidebar.write (''' If you want the analysis since Covid-19 started, leave in blank.''')
 # SELECTORS SIDEBAR
 start_date = st.sidebar.date_input('SELECT START DATE', datetime(2020, 1, 1))
@@ -89,7 +89,7 @@ This app present interactive dashboards to explore COVID-19 data at global level
 
 #SECOND CONTAINER 
 #Titles
-st.subheader ('''📈 SECOND. Select The Country, Metric, Interval and Non/Normalized Data''')
+st.subheader ('''📈 SECOND STEP. Select Country, Metric, Interval and Non/Normalized Data''')
 
 
 # SELECT BOXES IN FRAMEWORK HORIZONTAL (Select a variable)
