@@ -93,7 +93,7 @@ st.subheader ('''📈 Select the country, metric, interval and time period for t
 
 
 # SELECT BOXES IN FRAMEWORK HORIZONTAL (Select a variable)
-col1, col2, col3, col4 = st.beta_columns([1, 1, 1, 1])
+col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
 #with col1: 
     #continent = st.selectbox("CONTINENT", covid_w['continent'].dropna().unique())
