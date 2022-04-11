@@ -85,11 +85,11 @@ st.sidebar.write ('''3. Select NORMALIZED data if you want to do analyses of the
 st.markdown ('<h1 style= "font-family:Verdana; color:Black; font-size: 40px;">Covid Interactive Dashboards </h1>', unsafe_allow_html=True)
 #st.text('this is app')
 st.write (''' 
-This app present interactive dashboards to explore COVID-19 data, to compare countries and variables at worldwide. First, select the time period located in the leftside of the WebApp. Second, select the country or countries and the variable to analyze. ''')
+This app present interactive dashboards to explore COVID-19 data, to compare countries and variables at worldwide. Select the country or countries and the variable to analyze. If you want the analysis in a specific period of time, please choose the time period you need, it is located in the left-side of the WebApp. ''')
 
 #SECOND CONTAINER 
 #Titles
-st.subheader ('''📈 SECOND STEP. Select Country, Metric, Interval and Non/Normalized Data''')
+st.subheader ('''📈 SELECT. Choose the Country/Countries, Metric, Interval and Non/Normalized Data''')
 
 
 # SELECT BOXES IN FRAMEWORK HORIZONTAL (Select a variable)
