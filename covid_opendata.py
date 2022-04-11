@@ -63,7 +63,7 @@ from PIL import Image
 st.sidebar.image('images/covid_red.png', width=110)
 #st.sidebar.title('''Covid-19 Dashboards''') 
 st.sidebar.write (''' 📈 This app explore COVID-19 data at global level.''')
-st.sidebar.header('''First Select the time period''') 
+st.sidebar.header('''FIRST. Select the time period''') 
 st.sidebar.write (''' If you want to analyse since Covid-19 starting leave in blank.''')
 # SELECTORS SIDEBAR
 start_date = st.sidebar.date_input('SELECT START DATE', datetime(2020, 1, 1))
