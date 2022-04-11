@@ -85,7 +85,7 @@ st.sidebar.write ('''3. Select NORMALIZED data if you want to do analyses of the
 st.markdown ('<h1 style= "font-family:Verdana; color:Black; font-size: 40px;">Covid Interactive Dashboards </h1>', unsafe_allow_html=True)
 #st.text('this is app')
 st.write (''' 
-This app present interactive dashboards to explore COVID-19 data, to compare countries and variables at worldwide. First, select the time period located in the left of the WebApp, and Secondly, select the country or countries and the variable to analyze. ''')
+This app present interactive dashboards to explore COVID-19 data, to compare countries and variables at worldwide. First, select the time period located in the leftside of the WebApp, and Secondly, select the country or countries and the variable to analyze. ''')
 
 #SECOND CONTAINER 
 #Titles
