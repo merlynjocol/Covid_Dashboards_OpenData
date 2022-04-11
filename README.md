@@ -9,7 +9,7 @@ Table of Content
 
 # Covid Dashboards with OpenData
 
-### **Authors:** [Merlyn Johanna Hurtado](https://github.com/merlynjocol,[Lisa Formentini](https://github.com/fmtlisa),  [Adam Kozlowski](https://github.com/kozload)
+### **Authors:**:  [Merlyn Johanna Hurtado](https://github.com/merlynjocol, [Lisa Formentini](https://github.com/fmtlisa),  [Adam Kozlowski](https://github.com/kozload)
 
 ### Description
 This project is developed during the Course Open Data at the Master AIRE in the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en)
