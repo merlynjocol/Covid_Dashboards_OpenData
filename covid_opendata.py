@@ -89,7 +89,7 @@ This app present interactive dashboards to explore COVID-19 data at global level
 
 #SECOND CONTAINER 
 #Titles
-st.subheader ('''📈 Select the country, metric, interval and time period for the analysis''')
+st.subheader ('''📈 SECOND. Select The Country, Metric, Interval and Non/Normalized Data''')
 
 
 # SELECT BOXES IN FRAMEWORK HORIZONTAL (Select a variable)
