@@ -109,10 +109,13 @@ with col2:
     variable = st.selectbox("METRIC",("Cases","Deaths"))                         
 with col3:
     interval  = st.selectbox("INTERVAL",("Daily","7 days average", "Cumulative" ))
-#STATE AN ERROR
+
+
+#STATE AN ERROR AND DON'T SHOW THE KEYERROR 
 if not countries:
    st.error(" ⚠️ Please select at least one country.")
    st.stop()
+
 with col4: 
     normal = st.selectbox("Analysis Relative to Population", ("Non-Normalized","Normalized"))
     
