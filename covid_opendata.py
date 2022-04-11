@@ -5,6 +5,8 @@ from datetime import datetime, timedelta
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+import warnings
+warnings.filterwarnings(‘ignore’)
 
 #SETTTING THE PAGE TITLE AND ICON
 st.set_page_config(layout="wide", page_title= 'Covid Dashboards', page_icon="📈" )
