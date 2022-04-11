@@ -8,7 +8,6 @@ import streamlit as st
 import warnings
 warnings.filterwarnings("ignore")
 
-showWarningOnDirectExecution = false
 
 #SETTTING THE PAGE TITLE AND ICON
 st.set_page_config(layout="wide", page_title= 'Covid Dashboards', page_icon="📈" )
