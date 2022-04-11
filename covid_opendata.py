@@ -8,7 +8,7 @@ import streamlit as st
 import warnings
 warnings.filterwarnings("ignore")
 
-disableWatchdogWarning = false
+
 
 
 #SETTTING THE PAGE TITLE AND ICON
