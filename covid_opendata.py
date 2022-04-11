@@ -72,7 +72,7 @@ end_date = st.sidebar.date_input('SELECT END DATE')
 st.sidebar.markdown ('---')
 st.sidebar.header('''Information''') 
 st.sidebar.write("💡 This app use open Datasets from Our World Data [link](https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true)")
-st.sidebar.write("💻 The code is available here: [link](https://share.streamlit.io/merlynjocol/covid_dashboards_opendata/main/covid_opendata.py)")
+st.sidebar.write("💻 The code is available here: [link](https://github.com/merlynjocol/Covid_Dashboards_OpenData)")
 #SIDEBAR INSTRUCTIONS
 st.sidebar.markdown ('---')
 st.sidebar.header('''Instructions''') 
