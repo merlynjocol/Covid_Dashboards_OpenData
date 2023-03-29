@@ -93,4 +93,4 @@ streamlit run covid_opendata.py
 
 # Credits
 
-Many thanks to [Pierre Poulain](https://github.com/pierrepo), our project mentor
+Many thanks to [Pierre Poulain](https://heidiproject.eu/)
